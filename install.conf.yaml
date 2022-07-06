@@ -1,0 +1,22 @@
+- clean: []
+- create:
+  - ~/.config
+  - ~/.config/systemd
+- create:
+    ~/.ssh:
+        mode: 0700
+- link:
+    ~/bin: bin
+    ~/.zshrc: zshrc
+    ~/.p10k.zsh: p10k.zsh
+    ~/.vimrc: vimrc
+    ~/.pam_environment: pamenv
+    ~/.fonts.conf: fonts.conf
+    ~/.config/systemd/user/ssh-agent.service: systemd_user/ssh-agent.service
+    ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.config/dunst/dunstrc: dunstrc
+    ~/.config/i3/config: i3-config
+    ~/.config/picom/picom.conf: picom.conf
+    ~/.config/polybar/config.ini: polybar.ini
+    ~/.config/rofi: rofi
+

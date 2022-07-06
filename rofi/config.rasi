@@ -1,0 +1,10 @@
+/* Main shared config */
+
+configuration {
+    show-icons:           true;
+    icon-theme:           "Papirus-Dark";
+    font:                 "Fira Code 12";
+    terminal:             "kitty";
+    ssh-client:           "kssh";
+}
+

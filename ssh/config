@@ -1,0 +1,7 @@
+AddKeysToAgent yes
+
+Host *
+    ServerAliveInterval 10
+    ControlMaster auto
+    ControlPersist 10m
+    ControlPath ~/.ssh/socket-%C
