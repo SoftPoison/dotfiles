@@ -22,9 +22,11 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+[[ ! -f ~/.zshrc.extra ]] || source ~/.zshrc.extra
+
 # User configuration
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-[[ ! -d ~/Programs/bin ]] || export PATH="/home/tomais/Programs/bin:$PATH"
+[[ ! -d ~/bin ]] || export PATH="/home/tomais/bin:$PATH"
 [[ ! -d ~/go/bin ]] || export PATH="$PATH:/home/tomais/go/bin"
 [[ ! -d ~/.cargo/bin ]] || export PATH="$PATH:/home/tomais/.cargo/bin"
 
