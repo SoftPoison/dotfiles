@@ -20,6 +20,8 @@
     ~/.pam_environment: pamenv
     ~/.fonts.conf: fonts.conf
     ~/.config/systemd/user/ssh-agent.service: systemd_user/ssh-agent.service
+    ~/.config/systemd/user/kanshi.service: systemd_user/kanshi.service
+    ~/.config/systemd/user/sway-session.target: systemd_user/sway-session.target
     ~/.config/dunst/dunstrc: dunstrc
     ~/.config/kanshi/config: kanshi.config
     ~/.config/kitty/kitty.conf: kitty.conf
