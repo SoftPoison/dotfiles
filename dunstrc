@@ -1,17 +1,17 @@
 [global]
 monitor = 0
 follow = mouse
-offset = "12x34"
+offset = "12x12"
 indicate_hidden = yes
 shrink = yes
-transparency = 5
+transparency = 0
 notification_height = 0
 separator_height = 4
 padding = 16
 horizontal_padding = 16
 frame_width = 2
 
-frame_color = "#232627"
+frame_color = "#8e44ad"
 separator_color = frame
 
 sort = yes
@@ -53,17 +53,17 @@ history = ctrl+grave
 context = ctrl+shift+period
 
 [urgency_low]
-background = "#232627"
-foreground = "#fcfcfc"
+foreground = "#232627"
+background = "#d6d1be"
 timeout = 4
 
 [urgency_normal]
-background = "#232627"
-foreground = "#fcfcfc"
+foreground = "#232627"
+background = "#d6d1be"
 timeout = 4
 
 [urgency_critical]
-background = "#232627"
-foreground = "#fcfcfc"
+foreground = "#232627"
+background = "#d6d1be"
 frame_color = "#ed1515"
 timeout = 0

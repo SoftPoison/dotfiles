@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-icon_path="/usr/share/icons/Papirus-Dark/symbolic/status/"
+icon_path="/usr/share/icons/Papirus/symbolic/status/"
 notify_id=506
 
 # notify <icon> <text>

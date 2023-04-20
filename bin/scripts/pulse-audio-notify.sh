@@ -3,7 +3,7 @@
 # Volume notification: Pulseaudio and dunst
 # inspired by gist.github.com/sebastiencs/5d7227f388d93374cebdf72e783fbd6a
 
-source ~/Programs/scripts/status-notify.sh
+source ~/bin/scripts/status-notify.sh
 
 function get_volume_icon {
     if [ "$1" -lt 10 ]; then
@@ -22,7 +22,7 @@ function get_volume_icon {
 function volume_notification {
     volume=`pamixer --get-volume`
     vol_icon=`get_volume_icon $volume`
-    dashes=$(python3 -c "print(f'{34*float($volume)/100:.0f}', end='')")
+    dashes=$(python3 -c "print(f'{32*float($volume)/100:.0f}', end='')")
     bar=$(seq -s "─" $dashes | sed 's/[0-9]//g')
     if [ "$volume" -lt 10 ]; then
         bar="mute"
@@ -48,11 +48,11 @@ function toggle_mute {
 
 case $1 in
 up)
-    pamixer -i 10
+    pamixer -i 5
     volume_notification
     ;;
 down)
-    pamixer -d 10
+    pamixer -d 5
     volume_notification
     ;;
 mute)

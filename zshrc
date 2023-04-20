@@ -11,7 +11,7 @@ plugins=(
 #   dotnet
     git
     sudo
-#   common-aliases
+    common-aliases
 #   npm
     python
     golang
@@ -29,6 +29,7 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 [[ ! -d ~/bin ]] || export PATH="/home/tomais/bin:$PATH"
 [[ ! -d ~/go/bin ]] || export PATH="$PATH:/home/tomais/go/bin"
 [[ ! -d ~/.cargo/bin ]] || export PATH="$PATH:/home/tomais/.cargo/bin"
+[[ ! -d ~/.local/share/gem/ruby/3.0.0/bin ]] || export PATH="$PATH:/home/tomais/.local/share/gem/ruby/3.0.0/bin"
 
 hide_prompt() {
     typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status)
@@ -42,20 +43,15 @@ unhide_prompt() {
     source ~/.p10k.zsh
 }
 
-#virsh_networks() {
-#    sudo virsh net-dhcp-leases default | awk '{print $6 ":\t" $5}' | tail -n +3 | head -n -1
-#}
+virsh_networks() {
+   sudo virsh net-dhcp-leases default | awk '{print $6 ":\t" $5}' | tail -n +3 | head -n -1
+}
 
-alias l="ls -lah"
-alias ll="ls -lh"
-alias la="ls -a"
-alias lla="ls -lah"
+alias l="ls -lah --hyperlink=auto"
+alias ll="ls -lh --hyperlink=auto"
+alias la="ls -a --hyperlink=auto"
+alias lla="ls -lah --hyperlink=auto"
 
 alias open=xdg-open
 
 alias icat="kitty +kitten icat"
-
-compdef _ssh kssh
-
-#alias burp="nohup java --illegal-access=permit -jar ~/Programs/burpsuite_pro_v2022.2.4.jar &>/dev/null &; disown"
-

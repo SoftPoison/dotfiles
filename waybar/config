@@ -1,0 +1,77 @@
+// -*- mode: json -*-
+
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 32, // Waybar height
+
+    // Module order
+    "modules-left": ["sway/workspaces", "sway/mode",],
+    "modules-right": ["tray", "pulseaudio", "network", "backlight", "battery", "clock#1", "clock#2"],
+
+    // Modules configuration
+    "sway/workspaces": {
+         "disable-markup" : false
+     },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10,
+        "show-passive-items": true
+    },
+    "clock#1": {
+        "format": "{:%Y/%m/%d}"
+    },
+    "clock#2": {
+        "format": "{:%H:%M}"
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "states": [0,50],
+        "format-icons": ["", ""]
+    },
+    "battery": {
+//      "bat": "BAT2",
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "{essid} ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-disconnected": "Disconnected ⚠",
+        "interval" : 7
+    },
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "{volume}% ",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+    }
+}
+

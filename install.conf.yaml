@@ -2,6 +2,13 @@
 - create:
   - ~/.config
   - ~/.config/systemd
+  - ~/.config/systemd/user
+  - ~/.config/dunst
+  - ~/.config/kanshi
+  - ~/.config/kitty
+  - ~/.config/sway
+  - ~/.local
+  - ~/.local/share
 - create:
     ~/.ssh:
         mode: 0700
@@ -13,10 +20,9 @@
     ~/.pam_environment: pamenv
     ~/.fonts.conf: fonts.conf
     ~/.config/systemd/user/ssh-agent.service: systemd_user/ssh-agent.service
-    ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/dunst/dunstrc: dunstrc
-    ~/.config/i3/config: i3-config
-    ~/.config/picom/picom.conf: picom.conf
-    ~/.config/polybar/config.ini: polybar.ini
-    ~/.config/rofi: rofi
-
+    ~/.config/kanshi/config: kanshi.config
+    ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.config/waybar: waybar
+    ~/.config/sway/config: sway.config
+    ~/.local/share/fonts: fonts
