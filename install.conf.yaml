@@ -27,4 +27,5 @@
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/waybar: waybar
     ~/.config/sway/config: sway.config
+    ~/.config/swaync: swaync
     ~/.local/share/fonts: fonts

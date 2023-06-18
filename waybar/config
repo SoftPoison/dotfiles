@@ -6,8 +6,9 @@
     "height": 32, // Waybar height
 
     // Module order
-    "modules-left": ["sway/workspaces", "sway/mode",],
-    "modules-right": ["tray", "pulseaudio", "network", "backlight", "battery", "clock#1", "clock#2"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["mpris"],
+    "modules-right": ["tray", "custom/notification", "pulseaudio", "network", "backlight", "battery", "clock#1", "clock#2"],
 
     // Modules configuration
     "sway/workspaces": {
@@ -57,7 +58,7 @@
         "interval" : 7
     },
     "pulseaudio": {
-        "scroll-step": 5,
+        "scroll-step": 1,
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}",
         "format-muted": "{volume}% ",
@@ -72,6 +73,36 @@
         },
 		"on-click": "pamixer -t",
 		"on-click-right": "pavucontrol"
+    },
+    "mpris": {
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "player-icons": {
+            "default": "⏵ "
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{} {icon}",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": "",
+            "inhibited-notification": "",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     }
 }
 
