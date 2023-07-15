@@ -26,6 +26,7 @@
     ~/.config/kanshi/config: kanshi.config
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/waybar: waybar
+    ~/.config/wofi: wofi
     ~/.config/sway/config: sway.config
     ~/.config/swaync: swaync
     ~/.local/share/fonts: fonts
