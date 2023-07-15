@@ -1,6 +1,7 @@
 - clean: []
 - create:
   - ~/.config
+  - ~/.config/environment.d
   - ~/.config/systemd
   - ~/.config/systemd/user
   - ~/.config/dunst
@@ -17,7 +18,7 @@
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
     ~/.vimrc: vimrc
-    ~/.pam_environment: pamenv
+    ~/.config/environment.d/env.conf: env.conf
     ~/.fonts.conf: fonts.conf
     ~/.config/systemd/user/ssh-agent.service: systemd_user/ssh-agent.service
     ~/.config/systemd/user/kanshi.service: systemd_user/kanshi.service
