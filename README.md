@@ -1,5 +1,7 @@
 # dotfiles
 
+ignore this. I need to make a new version properly leveraging nix
+
 ## Packages
 
 Two package lists are included:

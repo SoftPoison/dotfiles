@@ -5,7 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="/home/tomais/.oh-my-zsh"
+export ZSH="/Users/tomais/.oh-my-zsh"
+export ZSH_THEME="powerlevel10k/powerlevel10k"
+export EDITOR="vim"
 
 plugins=(
 #   dotnet
@@ -18,18 +20,39 @@ plugins=(
 #   adb
 )
 
+if [[ -n "$KITTY_INSTALLATION_DIR" ]]; then
+    export KITTY_SHELL_INTEGRATION="enabled"
+    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+    kitty-integration
+    unfunction kitty-integration
+fi
+
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [[ ! -f ~/.zshrc.extra ]] || source ~/.zshrc.extra
 
+
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+
+eval "$(direnv hook zsh)"
+
 # User configuration
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-[[ ! -d ~/bin ]] || export PATH="/home/tomais/bin:$PATH"
-[[ ! -d ~/go/bin ]] || export PATH="$PATH:/home/tomais/go/bin"
-[[ ! -d ~/.cargo/bin ]] || export PATH="$PATH:/home/tomais/.cargo/bin"
-[[ ! -d ~/.local/share/gem/ruby/3.0.0/bin ]] || export PATH="$PATH:/home/tomais/.local/share/gem/ruby/3.0.0/bin"
+
+# add stuff to path
+[[ ! -d ~/bin ]] || export PATH="/Users/tomais/bin:$PATH"
+[[ ! -d ~/go/bin ]] || export PATH="$PATH:/Users/tomais/go/bin"
+[[ ! -d ~/.cargo/bin ]] || export PATH="$PATH:/Users/tomais/.cargo/bin"
+[[ ! -d ~/.local/share/gem/ruby/3.0.0/bin ]] || export PATH="$PATH:/Users/tomais/.local/share/gem/ruby/3.0.0/bin"
+
+# Add SSH keys from keychain to agent (if the agent doesn't have any keys yet)
+(ssh-add -l || ssh-add --apple-load-keychain) &> /dev/null
+
+# handy aliases
 
 hide_prompt() {
     typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status)
@@ -43,15 +66,23 @@ unhide_prompt() {
     source ~/.p10k.zsh
 }
 
-virsh_networks() {
-   sudo virsh net-dhcp-leases default | awk '{print $6 ":\t" $5}' | tail -n +3 | head -n -1
+aws_mfa() {
+    device="arn:aws:iam::XXXXXXXXXXXX:mfa/google_authenticator"
+    echo -n "MFA code: "
+    read mfa
+    tf="$(mktemp)"
+    aws sts get-session-token --serial-number "$device" --token-code "$mfa" > $tf
+    export AWS_ACCESS_KEY_ID="$(jq -r '.Credentials.AccessKeyId' $tf)"
+    export AWS_SECRET_ACCESS_KEY="$(jq -r '.Credentials.SecretAccessKey' $tf)"
+    export AWS_SESSION_TOKEN="$(jq -r '.Credentials.SessionToken' $tf)"
+
+    rm -f "$tf"   
 }
 
-alias l="ls -lah --hyperlink=auto"
-alias ll="ls -lh --hyperlink=auto"
-alias la="ls -a --hyperlink=auto"
-alias lla="ls -lah --hyperlink=auto"
+#alias l="ls -lah --hyperlink=auto"
+#alias ll="ls -lh --hyperlink=auto"
+#alias la="ls -a --hyperlink=auto"
+#alias lla="ls -lah --hyperlink=auto"
 
-alias open=xdg-open
-
+alias kitty="/Applications/kitty.app/Contents/MacOS/kitty"
 alias icat="kitty +kitten icat"
